@@ -1,9 +1,11 @@
-import 'package:checkoutapp/chechout/presentation/screens/payment_details_view.dart';
+import 'package:checkoutapp/chechout/data/repository/checkout_repo_impl.dart';
+import 'package:checkoutapp/chechout/presentation/controllers/stripe_payment_cubit.dart';
+import 'package:checkoutapp/chechout/presentation/screens/payment_methods_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/global_widgets/custom_button.dart';
 import '../widgets/cart_info_item.dart';
-import '../widgets/payment_list.dart';
 import '../widgets/total_price.dart';
 
 class MyCartViewBody extends StatelessWidget {
@@ -20,7 +22,7 @@ class MyCartViewBody extends StatelessWidget {
           ),
           const Expanded(
               child:
-                  Image(image: AssetImage('assets/images/basket_image.png'))),
+              Image(image: AssetImage('assets/images/basket_image.png'))),
           const SizedBox(
             height: 25,
           ),
@@ -50,13 +52,16 @@ class MyCartViewBody extends StatelessWidget {
           CustomButton(
             title: 'Complete Payment',
             onTap: () {
-              showModalBottomSheet(context :context ,
+              showModalBottomSheet(context: context,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(28)
+                      borderRadius: BorderRadius.circular(28)
                   ),
-                  builder: (context){
-                return const PaymentMethodBottomSheet();
-              });
+                  builder: (context) {
+                    return BlocProvider(
+                      create: (context) => StripePaymentCubit(CheckoutRepoImpl()),
+                      child: const PaymentMethodBottomSheet(),
+                    );
+                  });
             },
           ),
           const SizedBox(
@@ -68,22 +73,3 @@ class MyCartViewBody extends StatelessWidget {
   }
 }
 
-class PaymentMethodBottomSheet extends StatelessWidget {
-  const PaymentMethodBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(height: 16,),
-          PaymentMethodBuilder(),
-          SizedBox(height: 32,),
-          CustomButton(title: 'Continue')
-        ],
-      ),
-    );
-  }
-}

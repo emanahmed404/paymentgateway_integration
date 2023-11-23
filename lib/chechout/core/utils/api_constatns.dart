@@ -1,0 +1,4 @@
+class ApiConstants {
+  static  String publishableKey = 'pk_test_51OCntRIL5DeRkscvsT7w3xrxO7tEN4bzoyOuOra9RabusQXpFTvV6vdaCnA1MsZFsnma9ZFu7btZ5AI6BOXt4dxX000YkSjAkg' ;
+  static String secretKey ="sk_test_51OCntRIL5DeRkscv7quOFPY2frwf6uskvRLmVo9dj5CarjeuGt6G4h7snIuTPemWqKQYAhNHbSQDaJMDzf4gKIyg00lvTlgSyM" ;
+}

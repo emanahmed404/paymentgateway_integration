@@ -9,7 +9,9 @@ class PaymentMethodBuilder extends StatefulWidget {
 }
 
 class _PaymentMethodBuilderState extends State<PaymentMethodBuilder> {
-  final List<String> payments =const ['assets/images/card.svg','assets/images/paypal.svg','assets/images/applepay.svg'];
+  final List<String> payments =const ['assets/images/card.svg','assets/images/paypal.svg',
+    // 'assets/images/applepay.svg'
+  ];
  int activeIndex =0;
   @override
   Widget build(BuildContext context) {
